@@ -11,11 +11,11 @@ from sklearn.impute import SimpleImputer
 from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 
-DATA_DIR = r'student_performance\artifacts'
+DATA_DIR = 'artifacts'
 os.makedirs(DATA_DIR,exist_ok=True)
 @dataclass
 class DataTransformationConfig:
-    processor_obj_file_path = os.path.join(DATA_DIR, 'preprocessor.pkl')
+    processor_obj_file_path = os.path.join(DATA_DIR, 'preprocessor_2.pkl')
 
 class DataTransformation:
     def __init__(self):
