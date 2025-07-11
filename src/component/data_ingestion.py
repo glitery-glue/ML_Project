@@ -5,8 +5,10 @@ from dataclasses import dataclass
 from sklearn.model_selection import train_test_split
 from src.logger import logging
 from src.exception import CustomException
+from src.component.data_transformation import DataTransformation
+from src.component.model_trainer import ModelTrainer
 
-DATA_DIR = 'artifacts'
+DATA_DIR = r'student_performance\artifacts'
 os.makedirs(DATA_DIR,exist_ok=True)
 @dataclass
 class DataIngetionConfig:
@@ -40,5 +42,14 @@ class DataIngetion:
 
 if __name__=="__main__":
     obj=DataIngetion()
-    file_path=r"C:\Users\sahas\python_project\visual_studio\student_performance\notebook\data\student.csv"
-    obj.initiate_data_ingition(file_path)
+    file_path=r"artifacts\data\student.csv"
+    train_data_path, test_data_path = obj.initiate_data_ingition(file_path)
+    transform= DataTransformation()
+    target_variable='math_score'
+    train_array, test_array,_ = transform.transform_data(train_data_path, test_data_path,target_variable)
+    model_trainer= ModelTrainer()
+    r2_score = model_trainer.initiate_model_training(train_array, test_array)
+    print(r2_score)
+
+
+
