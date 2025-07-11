@@ -2,6 +2,8 @@ import os
 import sys
 import numpy as np
 import pandas as pd
+from dataclasses import dataclass
+from src.utils import save_obj
 from src.logger import logging
 from src.exception import CustomException
 from sklearn.pipeline import Pipeline
@@ -9,9 +11,11 @@ from sklearn.impute import SimpleImputer
 from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 
+DATA_DIR = r'student_performance\artifacts'
+os.makedirs(DATA_DIR,exist_ok=True)
 @dataclass
-class DataTransformationConfig():
-    processor_obj_file_path = os.path.join('artifacts', 'preprocessor.pkl')
+class DataTransformationConfig:
+    processor_obj_file_path = os.path.join(DATA_DIR, 'preprocessor.pkl')
 
 class DataTransformation:
     def __init__(self):
@@ -76,8 +80,17 @@ class DataTransformation:
             test_array=np.c_[input_feature_test_arr,np.array(target_feature_test_df)]
 
             logging.info("saving preprocessing object")
-            load_save(self.data_transform_config.processor_obj_file_path, preprocessing_obj)
+            save_obj(self.data_transform_config.processor_obj_file_path, preprocessing_obj)
 
             return(train_array, test_array,self.data_transform_config.processor_obj_file_path)
         except Exception as e:
             raise CustomException(e, sys)
+
+
+if __name__=="__main__":
+    target_variable='math_score'
+    train_path = r"student_performance\src\component\artifacts\train.csv"
+    test_path= r"student_performance\src\component\artifacts\test.csv"
+    data_transformation = DataTransformation()
+    _,_,processor_path=data_transformation.transform_data(train_path,test_path,target_variable)
+    print(processor_path)
