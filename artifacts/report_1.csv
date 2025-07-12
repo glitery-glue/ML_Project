@@ -1,0 +1,10 @@
+,Model_Name,R_2_score
+8,Lasso Regression,0.9184578576075203
+7,Ridge Regression,0.9179762224245933
+3,Linear Regression,0.9179536439407119
+2,Gradient Boosting,0.9153379984806195
+4,XGBRegressor,0.9086701629400016
+0,Random Forest,0.9068372079173054
+5,CatBoosting Regressor,0.9053259142644814
+6,AdaBoost Regressor,0.8998409512514749
+1,Decision Tree,0.84618911491348
