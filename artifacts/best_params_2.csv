@@ -1,0 +1,10 @@
+,model_name,best_param
+0,Random Forest,{'n_estimators': 128}
+1,Decision Tree,{'criterion': 'poisson'}
+2,Gradient Boosting,"{'learning_rate': 0.05, 'n_estimators': 256, 'subsample': 0.7}"
+3,Linear Regression,{}
+4,XGBRegressor,"{'learning_rate': 0.05, 'n_estimators': 128}"
+5,CatBoosting Regressor,"{'depth': 6, 'iterations': 100, 'learning_rate': 0.1}"
+6,AdaBoost Regressor,"{'learning_rate': 0.5, 'n_estimators': 128}"
+7,Ridge Regression,"{'alpha': 1.0, 'fit_intercept': True}"
+8,Lasso Regression,"{'alpha': 0.1, 'fit_intercept': False}"
